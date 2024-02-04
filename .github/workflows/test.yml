@@ -4,7 +4,7 @@ on:
     branches: ['*']
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}_test:${{ github.sha }}
+  IMAGE_NAME: ${{ github.repository }}_test
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: echo
         run: |
-          IMAGE_NAME=${{ env.REGISTRY }}/${IMAGE_NAME,,}
+          IMAGE_NAME=${{ env.REGISTRY }}/${IMAGE_NAME,,}:${{ github.sha }}
           echo "Starting container"
           docker run -d --name app $IMAGE_NAME
           echo "Test Prettier"
