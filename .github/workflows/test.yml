@@ -1,30 +1,16 @@
 name: Test
-
 on:
   push:
     branches: ['*']
-
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}_test
 jobs:
-  # check:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Check ESLint
-  #       run: npm run lint
-
-  #     - name: Check format
-  #       run: npx prettier --check .
-
   build:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,6 +20,23 @@ jobs:
       - name: Build test image
         uses: ./.github/templates/build
         env:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: ${{ github.repository }}_test
+          REGISTRY: ${{ env.REGISTRY }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+    steps:
+      - name: ls
+        run: ls
+
+      - name: Check ESLint
+        run: npm run lint
+
+      - name: Check format
+        run: npx prettier --check .
