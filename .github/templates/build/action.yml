@@ -2,12 +2,6 @@ name: 'Build And Push Docker Image'
 
 description: 'Build image from the Dockerfile and push it to GHCR'
 
-inputs:
-  REGISTRY:
-    description: registry url
-  IMAGE_NAME:
-    description: image name
-
 runs:
   using: 'composite'
   steps:
@@ -15,7 +9,7 @@ runs:
       run: |
         echo ${{ env.REGISTRY }}
         echo ${{ github.actor }}
-        echo ${{ env.token }}
+        echo ${{ env.GITHUB_TOKEN }}
       shell: bash
 
     - name: Log in to the Container registry
@@ -23,7 +17,7 @@ runs:
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
-        password: ${{ env.token }}
+        password: ${{ env.GITHUB_TOKEN }}
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta

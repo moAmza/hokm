@@ -31,15 +31,9 @@ jobs:
         with:
           ref: test-actions
 
-      - name: ls
-        run: ls ./.github/workflows/build/ -a
-
-      - name: cat
-        run: cat ./.github/workflows/build/action.yml
-
       - name: Build test image
-        uses: ./.github/workflows/build
+        uses: ./.github/templates/build
         env:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
-          token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
