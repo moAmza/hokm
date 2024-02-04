@@ -29,8 +29,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: pwd
+        run: pwd
+
       - name: Build test image
-        uses: .github/templates
+        uses: ../templates/action.yml
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
