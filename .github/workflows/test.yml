@@ -28,12 +28,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: test-actions
 
       - name: ls
         run: ls -a
 
       - name: Build test image
-        uses: ./.github/workflows/biuld
+        uses: ./.github/workflows/build/action.yml
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
