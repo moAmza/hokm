@@ -39,8 +39,7 @@ jobs:
 
       - name: Build test image
         uses: ./.github/workflows/build
-        with:
+        env:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
-        env:
           token: ${{ secrets.GITHUB_TOKEN }}
