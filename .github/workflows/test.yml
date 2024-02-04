@@ -38,7 +38,7 @@ jobs:
         run: cat ./.github/workflows/build/action.yml
 
       - name: Build test image
-        uses: ./.github/workflows/build/action.yml
+        uses: ./.github/workflows/build
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
