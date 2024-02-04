@@ -30,14 +30,16 @@ jobs:
         run: echo ${{ env.IMAGE_NAME }}
   test:
     runs-on: ubuntu-latest
-    container:
-      image: ${{ github.IMAGE_NAME }}
-      credentials:
-        username: '${{ github.actor }}'
-        password: '${{ secrets.github_token }}'
-      ports:
-        - 80
+    # container:
+    #   image: ${{ github.IMAGE_NAME }}
+    #   credentials:
+    #     username: '${{ github.actor }}'
+    #     password: '${{ secrets.github_token }}'
+    #   ports:
+    #     - 80
     steps:
+      - name: echo
+        run: echo ${{ env.IMAGE_NAME }}
       - name: ls
         run: ls
       - name: Check ESLint
