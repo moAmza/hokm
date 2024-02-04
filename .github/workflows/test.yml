@@ -5,7 +5,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}_test
-  IMAGE_PATH: ${{ REGISTRY }}/${{ IMAGE_NAME }}
+  IMAGE_PATH: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 jobs:
   build:
     runs-on: ubuntu-latest
