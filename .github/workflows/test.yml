@@ -28,7 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm run install
+        run: npm install
       - name: Check lint
         run: npm run lint
   build:
