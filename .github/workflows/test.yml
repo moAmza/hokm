@@ -52,7 +52,7 @@ jobs:
       - name: run test
         run: |
           IMAGE_NAME=${{ env.REGISTRY }}/${IMAGE_NAME,,}:${{ github.ref_name }} 
-          docker run --name app $IMAGE_NAME
+          docker run -d --name app $IMAGE_NAME
           docker exec -i app npm run test
   deploy:
     runs-on: ubuntu-latest
