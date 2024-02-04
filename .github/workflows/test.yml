@@ -4,7 +4,7 @@ on:
     branches: ['*']
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}_test
+  IMAGE_NAME: ${{ github.repository }}_test:${{ github.sha }}
 
 jobs:
   build:
