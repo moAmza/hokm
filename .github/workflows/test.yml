@@ -5,6 +5,19 @@ on:
     branches: ['*']
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check ESLint
+      run: npm run lint
+
+    - name: Check format
+      run: npx prettier --check .
+
   build:
     runs-on: ubuntu-latest
 
@@ -17,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build test image
-        uses: .github/templates/build.yml
+        uses: .github/templates
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
