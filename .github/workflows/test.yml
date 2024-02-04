@@ -13,8 +13,11 @@ jobs:
       packages: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Build test image
-        uses: ../workflow_templates/build.yml
+        uses: ../templates/build.yml
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
