@@ -4,7 +4,9 @@ description: 'Build image from the Dockerfile and push it to GHCR'
 
 inputs:
   REGISTRY:
+    description: registry url
   IMAGE_NAME:
+    description: image name
 
 runs:
   - name: Log in to the Container registry
