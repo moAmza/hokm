@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: echo
         run: |
-          IMAGE_NAME=${IMAGE_NAME,,}
+          IMAGE_NAME=${{ env.REGISTRY }}/${IMAGE_NAME,,}
           echo "Starting container"
           docker run -d --name app $IMAGE_NAME
           echo "Test Prettier"
