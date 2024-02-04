@@ -32,8 +32,8 @@ jobs:
       - name: pwd
         run: pwd
 
-      - name: Build test image
-        uses: ../templates/action.yml
-        with:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: ${{ github.repository }}_test
+      # - name: Build test image
+      #   uses: ../templates/action.yml
+      #   with:
+      #     REGISTRY: ghcr.io
+      #     IMAGE_NAME: ${{ github.repository }}_test
