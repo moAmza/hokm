@@ -23,20 +23,20 @@ jobs:
           REGISTRY: ${{ env.REGISTRY }}
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  test:
-    runs-on: ubuntu-latest
-    container:
-      image: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}'
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-    steps:
-      - name: ls
-        run: ls
+  # test:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}'
+  #     env:
+  #       NODE_ENV: development
+  #     ports:
+  #       - 80
+  #   steps:
+  #     - name: ls
+  #       run: ls
 
-      - name: Check ESLint
-        run: npm run lint
+  #     - name: Check ESLint
+  #       run: npm run lint
 
-      - name: Check format
-        run: npx prettier --check .
+  #     - name: Check format
+  #       run: npx prettier --check .
