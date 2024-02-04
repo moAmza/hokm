@@ -29,7 +29,11 @@ jobs:
         run: |
           echo "IMAGE_NAME=${IMAGE_NAME,,}" >>${GITHUB_ENV}
       - name: echo
-        run: echo ${{ env.IMAGE_NAME }}
+        run: |
+          IMAGE_NAME=${IMAGE_NAME,,}
+          echo $IMAGE_NAME
+          docker run --rm -it --entrypoint bash npm run test $IMAGE_NAME
+
       # - name: Check ESLint
       #   run: npm run lint
       # - name: Check format
