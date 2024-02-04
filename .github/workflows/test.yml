@@ -42,5 +42,5 @@ jobs:
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
-        secrets:
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
