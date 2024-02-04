@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build test image
-        uses: ../templates/build.yml
+        uses: .github/templates/build.yml
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
