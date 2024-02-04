@@ -33,7 +33,7 @@ jobs:
         run: ls -a
 
       - name: Build test image
-        uses: ./.github/workflows/action.yml
+        uses: ./.github/workflows/biuld
         with:
           REGISTRY: ghcr.io
           IMAGE_NAME: ${{ github.repository }}_test
