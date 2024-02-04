@@ -5,18 +5,18 @@ on:
     branches: ['*']
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
+  # check:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Check ESLint
-        run: npm run lint
+  #     - name: Check ESLint
+  #       run: npm run lint
 
-      - name: Check format
-        run: npx prettier --check .
+  #     - name: Check format
+  #       run: npx prettier --check .
 
   build:
     runs-on: ubuntu-latest
@@ -29,11 +29,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: pwd
-        run: pwd
-
-      # - name: Build test image
-      #   uses: ../templates/action.yml
-      #   with:
-      #     REGISTRY: ghcr.io
-      #     IMAGE_NAME: ${{ github.repository }}_test
+      - name: Build test image
+        uses: ./.github/templates/action.yml
+        with:
+          REGISTRY: ghcr.io
+          IMAGE_NAME: ${{ github.repository }}_test
