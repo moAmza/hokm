@@ -25,14 +25,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+      IMAGE_PATH: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     container:
       image: '${{ env.IMAGE_PATH }}'
       credentials:
         username: '${{ github.actor }}'
         password: '${{ secrets.github_token }}'
-      env:
-        NODE_ENV: development
-        IMAGE_PATH: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       ports:
         - 80
     steps:
