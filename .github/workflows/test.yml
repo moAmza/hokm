@@ -29,6 +29,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: ls
+        run: ls
+
       - name: Build test image
         uses: ./.github/templates/action.yml
         with:
