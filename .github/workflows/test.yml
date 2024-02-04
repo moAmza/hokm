@@ -31,7 +31,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.repository }}_test
+      image: ${{ github.IMAGE_NAME }}
       credentials:
         username: '${{ github.actor }}'
         password: '${{ secrets.github_token }}'
