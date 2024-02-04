@@ -25,16 +25,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - name: set lower case owner name
-        run: |
-          echo "IMAGE_NAME=${IMAGE_NAME,,}" >>${GITHUB_ENV}
       - name: echo
         run: |
           IMAGE_NAME=${IMAGE_NAME,,}
-          echo $IMAGE_NAME
-          docker run --rm -it --entrypoint bash npm run test $IMAGE_NAME
-
-      # - name: Check ESLint
-      #   run: npm run lint
-      # - name: Check format
-      #   run: npx prettier --check .
+          echo "Starting container"
+          docker run -d --name app $IMAGE_NAME
+          echo "Test Prettier"
+          docker exec -i app npx prettier --check .
+          echo "Test ESLint"
+          docker exec -i app npm run lint
+          echo "Test App"
+          docker exec -i app npm run test
