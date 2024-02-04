@@ -26,9 +26,6 @@ jobs:
     needs: [build]
     container:
       image: ghcr.io/${IMAGE_NAME,,}:${{ github.ref_name }}
-      credentials:
-        username: moamza
-        password: ${{ secrets.github_token }}
     steps:
       - name: echo
         run: |
